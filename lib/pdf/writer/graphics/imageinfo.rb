@@ -103,21 +103,21 @@ class PDF::Writer::Graphics::ImageInfo
   def discover_format
     if    @top        =~ %r{^GIF8[79]a}
       Formats::GIF
-    elsif @top[0, 3]  == "\xff\xd8\xff"
+    elsif @top[0, 3].bytes  == "\xff\xd8\xff".bytes
       Formats::JPEG
-    elsif @top[0, 8]  == "\x89PNG\x0d\x0a\x1a\x0a"
+    elsif @top[0, 8].bytes  == "\x89PNG\x0d\x0a\x1a\x0a".bytes
       Formats::PNG
-    elsif @top[0, 3]  == "FWS"
+    elsif @top[0, 3].bytes  == "FWS".bytes
       Formats::SWF
-    elsif @top[0, 4]  == "8BPS"
+    elsif @top[0, 4].bytes  == "8BPS".bytes
       Formats::PSD
-    elsif @top[0, 2]  == 'BM'
+    elsif @top[0, 2].bytes  == 'BM'.bytes
       Formats::BMP
-    elsif @top[0, 4]  == "MM\x00\x2a"
+    elsif @top[0, 4].bytes  == "MM\x00\x2a".bytes
       Formats::TIFF
-    elsif @top[0, 4]  == "II\x2a\x00"
+    elsif @top[0, 4].bytes  == "II\x2a\x00".bytes
       Formats::TIFF
-    elsif @top[0, 12] == "\x00\x00\x00\x0c\x6a\x50\x20\x20\x0d\x0a\x87\x0a"
+    elsif @top[0, 12].bytes == "\x00\x00\x00\x0c\x6a\x50\x20\x20\x0d\x0a\x87\x0a".bytes
       Formats::JP2
     elsif @top        =~ %r{^P[1-7]}
       Formats::PPM
